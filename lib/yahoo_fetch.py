@@ -3,6 +3,18 @@ import json
 import yfinance as yf
 from datetime import datetime, timedelta
 
+def convert_timestamp_to_datetime(timestamp):
+    # Convert milliseconds to seconds
+    timestamp_seconds = timestamp // 1000
+
+    # Convert timestamp to datetime object
+    datetime_obj = datetime.fromtimestamp(timestamp_seconds)
+
+    # Convert datetime object to desired date format
+    formatted_date = datetime_obj.strftime("%Y-%m-%d %H:%M:%S")
+
+    return formatted_date
+
 def yahoo_fetch():
     today = datetime.now()
     seven_days_ago = today - timedelta(days=7)
@@ -15,10 +27,8 @@ def yahoo_fetch():
         interval="1m"
     )
 
-    print(metv)
-    
-    # Convert dataframe to JSON
-    metv_json = metv.to_json(orient="records")
+    # Convert dataframe to JSON with custom date format
+    metv_json = metv.reset_index().to_json(orient="records", date_format="iso")
 
     # Specify the path for the JSON file
     json_path = os.path.join("data", "raw", "metv.json")
@@ -32,6 +42,13 @@ def yahoo_fetch():
     with open(json_path, "r") as file:
         existing_data = json.load(file)
 
+    # Convert the timestamp to desired date format before adding it to the JSON
+    for item in existing_data:
+        if "Datetime" in item:
+            timestamp = item["Datetime"]
+            formatted_date = convert_timestamp_to_datetime(timestamp)
+            item["Datetime"] = formatted_date
+
     # Append the new data to the existing JSON data
     existing_data.extend(json.loads(metv_json))
 
@@ -40,5 +57,7 @@ def yahoo_fetch():
         json.dump(existing_data, file, indent=4)
 
     print(f"JSON file saved at: {json_path}")
-    
+
     return metv
+
+yahoo_fetch()
