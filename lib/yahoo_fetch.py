@@ -16,8 +16,7 @@ def yahoo_fetch():
     )
 
     print(metv)
-    print('a')
-
+    
     # Convert dataframe to JSON
     metv_json = metv.to_json(orient="records")
 
