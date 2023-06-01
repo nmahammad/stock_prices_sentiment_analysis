@@ -17,14 +17,14 @@ def convert_timestamp_to_datetime(timestamp):
 
 def yahoo_fetch():
     today = datetime.now()
-    seven_days_ago = today - timedelta(days=7)
+    start_date = today - timedelta(days=30)
 
     metv = yf.download(
         tickers="METV",
-        start=seven_days_ago,
+        start=start_date,
         end=today,
         period="1d",
-        interval="1m"
+        interval="1h"
     )
 
     # Convert dataframe to JSON with custom date format
