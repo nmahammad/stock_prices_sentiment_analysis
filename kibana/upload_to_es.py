@@ -6,8 +6,8 @@ from elasticsearch.helpers import bulk, BulkIndexError
 current_file_path = os.path.abspath(__file__)
 parent_folder_path = os.path.dirname(os.path.dirname(current_file_path))
 
-processed_stock_path = os.path.join(parent_folder_path, "data", "processed", "processed_stock_data.csv")
-# processed_news_path = os.path.join(parent_dir, "data", "processed", "processed_news_data.csv")
+processed_stock_path = os.path.join(parent_folder_path, "data", "processed", "processed_yearly_data.csv")
+processed_news_path = os.path.join(parent_folder_path, "data", "processed", "processed_monthly_data.csv")
 
 def csv_to_list_of_dicts(csv_path):
     result = []
@@ -28,25 +28,20 @@ def index_data(path,index_name):
     dict = csv_to_list_of_dicts(path) 
     fields = list(dict[0].keys())
 
-     # Define the index mapping
+    # Define the index mapping
     index_mapping = {
         "mappings": {
-            "properties": {
-                fields[0]: {
-                    "type": "date"
-                },
-                fields[1]: {
-                    "type": "float"
-                },
-                 fields[2]: {
-                    "type": "float"
-                }
+        "properties": {
+        "Date": {"type": "date"},
+        "Adj Close": {"type": "float"},
+        "Volume": {"type": "integer"},
+        "score": {"type": "float"}
             }
         }
     }
 
     # Create the index with explicit mapping
-    es.indices.create(index=index_name, body=index_mapping)
+    es.indices.create(index=index_name,body = index_mapping)
 
     bulk_documents = [
     {"_index": index_name, "_source": doc} for doc in dict
@@ -67,6 +62,7 @@ def index_data(path,index_name):
 
 
 index_data(processed_stock_path,'metaverse_stocks')
+index_data(processed_news_path,'stocks_news_correlation')
 
 
 # index_data(processed_stock_path,"prices_daily_avg")

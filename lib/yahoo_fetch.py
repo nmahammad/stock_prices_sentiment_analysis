@@ -107,4 +107,3 @@ def yahoo_fetch_monthly():
     return metv
 
 
-yahoo_fetch_monthly()

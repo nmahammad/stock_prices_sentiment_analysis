@@ -20,10 +20,10 @@ def process_data(input_file, output_file):
     print(f"Data saved successfully: {output_file}")
 
 
-# # Process yearly data
-# yearly_data_path = os.path.join(data_folder_path, "metv_yearly.json")
-# yearly_data_output = os.path.join(output_directory, "processed_yearly_data.csv")
-# process_data(yearly_data_path, yearly_data_output)
+# Process yearly data
+yearly_data_path = os.path.join(data_folder_path, "metv_yearly.json")
+yearly_data_output = os.path.join(output_directory, "processed_yearly_data.csv")
+process_data(yearly_data_path, yearly_data_output)
 
 # Process monthly data
 monthly_data_path = os.path.join(data_folder_path, "metv_monthly.json")
