@@ -3,9 +3,11 @@ from datetime import date
 from elasticsearch import Elasticsearch
 from elasticsearch.helpers import bulk, BulkIndexError
 
-parent_dir = os.path.dirname(os.getcwd())
-processed_stock_path = os.path.join(parent_dir, "big_data_project", "data", "processed", "processed_stock_data.csv")
-processed_news_path = os.path.join(parent_dir, "big_data_project", "data", "processed", "processed_news_data.csv")
+current_file_path = os.path.abspath(__file__)
+parent_folder_path = os.path.dirname(os.path.dirname(current_file_path))
+
+processed_stock_path = os.path.join(parent_folder_path, "data", "processed", "processed_stock_data.csv")
+# processed_news_path = os.path.join(parent_dir, "data", "processed", "processed_news_data.csv")
 
 def csv_to_list_of_dicts(csv_path):
     result = []
@@ -35,6 +37,9 @@ def index_data(path,index_name):
                 },
                 fields[1]: {
                     "type": "float"
+                },
+                 fields[2]: {
+                    "type": "float"
                 }
             }
         }
@@ -61,28 +66,31 @@ def index_data(path,index_name):
             print(f"Error for document {i + 1}: {error['index']['error']}")
 
 
+index_data(processed_stock_path,'metaverse_stocks')
+
+
 # index_data(processed_stock_path,"prices_daily_avg")
 # index_data(processed_news_path,"news_scores_avg")
-# Get the list of indexes
-CLOUD_ID = 'b9299417ffa74630a2ae132fabd665e5:dXMtY2VudHJhbDEuZ2NwLmNsb3VkLmVzLmlvOjQ0MyQ0OTYwZWZjZjMwYTQ0YzI1YjM3NjVkZTVhOWZhNzY3NCQ1ODY3OTdmNTdlZWU0ZjQ5OGYzODkwMTMyNjViMmMwOA=='
-ELASTIC_PASSWORD = 'oHPPKIuBpqM4X9dLG0HEiOfO'
-# Connect to Elasticsearch
-es = Elasticsearch(cloud_id=CLOUD_ID, basic_auth=("elastic", ELASTIC_PASSWORD))
-# Specify the index name
-index_name = "prices_daily_avg"
+# # Get the list of indexes
+# CLOUD_ID = 'b9299417ffa74630a2ae132fabd665e5:dXMtY2VudHJhbDEuZ2NwLmNsb3VkLmVzLmlvOjQ0MyQ0OTYwZWZjZjMwYTQ0YzI1YjM3NjVkZTVhOWZhNzY3NCQ1ODY3OTdmNTdlZWU0ZjQ5OGYzODkwMTMyNjViMmMwOA=='
+# ELASTIC_PASSWORD = 'oHPPKIuBpqM4X9dLG0HEiOfO'
+# # Connect to Elasticsearch
+# es = Elasticsearch(cloud_id=CLOUD_ID, basic_auth=("elastic", ELASTIC_PASSWORD))
+# # Specify the index name
+# # index_name = "metaverse_stocks"
 
-# Search for all documents in the index
-query = {
-    "query": {
-        "match_all": {}
-    },
-    "size": 1000  # Set the size parameter to retrieve all documents (adjust the value as needed)
-}
+# # Search for all documents in the index
+# query = {
+#     "query": {
+#         "match_all": {}
+#     },
+#     "size": 1000  # Set the size parameter to retrieve all documents (adjust the value as needed)
+# }
 
-# Execute the search query
-response = es.search(index=index_name, body=query)
+# # Execute the search query
+# response = es.search(index=index_name, body=query)
 
-# Print the documents
-for hit in response["hits"]["hits"]:
-    source = hit["_source"]
-    print(source)
+# # Print the documents
+# for hit in response["hits"]["hits"]:
+#     source = hit["_source"]
+#     print(source)
