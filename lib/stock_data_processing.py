@@ -25,7 +25,7 @@ yearly_data_path = os.path.join(data_folder_path, "metv_yearly.json")
 yearly_data_output = os.path.join(output_directory, "processed_yearly_data.csv")
 process_data(yearly_data_path, yearly_data_output)
 
-# Process monthly data
-monthly_data_path = os.path.join(data_folder_path, "metv_monthly.json")
-monthly_data_output = os.path.join(output_directory, "processed_monthly_data.csv")
-process_data(monthly_data_path, monthly_data_output)
+# # Process monthly data
+# monthly_data_path = os.path.join(data_folder_path, "metv_monthly.json")
+# monthly_data_output = os.path.join(output_directory, "processed_monthly_data.csv")
+# process_data(monthly_data_path, monthly_data_output)

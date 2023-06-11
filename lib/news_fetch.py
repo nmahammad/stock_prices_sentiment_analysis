@@ -64,4 +64,3 @@ def news_fetch():
     print(f"JSON file saved at: {json_path}")
     print(f"Total number of articles fetched: {len(existing_data)}")
 
-news_fetch()

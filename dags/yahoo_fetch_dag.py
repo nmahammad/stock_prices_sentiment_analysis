@@ -7,7 +7,7 @@ from os.path import abspath, dirname
 # Add the parent directory of the current file to the Python path
 current_dir = dirname(abspath(__file__))
 sys.path.append(dirname(current_dir))
-from lib.yahoo_fetch import yahoo_fetch
+from lib.stock_fetch import yahoo_fetch
 
 default_args = {
     'start_date': datetime(2023, 5, 25),
