@@ -107,3 +107,6 @@ def yahoo_fetch_monthly():
     return metv
 
 
+
+# So we have 2 functions to fetch stock data. 
+#Yahoo_fetch_monthly and yahoo_fetch_yearly . 
