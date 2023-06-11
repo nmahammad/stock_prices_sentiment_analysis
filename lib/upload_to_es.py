@@ -28,7 +28,7 @@ def index_data_news(path,index_name):
     dict = csv_to_list_of_dicts(path) 
     fields = list(dict[0].keys())
 
-    # Define the index mapping
+    # Define the index mapping for news data
     index_mapping = {
         "mappings": {
         "properties": {
@@ -41,7 +41,7 @@ def index_data_news(path,index_name):
     }
 
 
-    # Create the index with explicit mapping
+    # Create the index with explicit mapping for news data
     es.indices.create(index=index_name,body = index_mapping)
 
     bulk_documents = [
@@ -77,7 +77,7 @@ def index_data_stocks(path,index_name):
     # Specify the index name
     dict = csv_to_list_of_dicts(path) 
 
-    # Define the index mapping
+    # Define the index mapping for stock data
     index_mapping = {
         "mappings": {
             "properties": {

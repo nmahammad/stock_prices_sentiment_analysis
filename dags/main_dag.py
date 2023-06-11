@@ -1,5 +1,6 @@
 from airflow import DAG
 from airflow.operators.python import PythonOperator
+from airflow.operators.bash import BashOperator
 from datetime import datetime, timedelta
 import sys
 from os.path import abspath, dirname
@@ -45,13 +46,10 @@ with DAG('main_dag', default_args=default_args, schedule_interval='0 13 * * *') 
     )
 
     # Task 5: Trigger news_data_processing.py file
-    task5 = PythonOperator(
+    task5 = BashOperator(
         task_id='news_data_processing_task',
-        python_callable=None,
-        op_kwargs={
-            'command': f'python {current_dir}/lib/news_data_processing.py',
-            'env': {'PYTHONPATH': current_dir}
-        }
+        bash_command=f'python {current_dir}/lib/news_data_processing.py',
+        env={'PYTHONPATH': current_dir}
     )
 
     # Task 6: Trigger index_data_stocks function
@@ -68,5 +66,7 @@ with DAG('main_dag', default_args=default_args, schedule_interval='0 13 * * *') 
         op_args=[processed_news_path, 'stocks_news_correlation']
     )
 
-    # Define the task dependencies
-    task1 >> task2 >> task3 >> task4 >> task5 >> task6 >> task7
+    [task2, task3] >> task5
+    task1 >> task4
+    task4 >> task6
+    task5 >> task7
