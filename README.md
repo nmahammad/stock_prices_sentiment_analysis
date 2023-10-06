@@ -30,6 +30,6 @@ My file structure includes:
 
 My project architecture aims to streamline data collection, processing, and analysis, enabling me to deliver accurate and timely insights into the stock market trends.
 
-![Project Structure](dags-structure.png)
+![Project Structure](dags structure.png)
 
 Thank you for exploring my Stock Price and News Sentiment Analysis for the Metaverse project. I hope you find it informative and educational. Feel free to reach out with any questions or feedback! 🚀📊
