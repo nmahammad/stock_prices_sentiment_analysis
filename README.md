@@ -24,6 +24,6 @@ Processed: After data processing, the resulting files are moved to this folder.
 
 My project architecture aims to streamline data collection, processing, and analysis, enabling me to deliver accurate and timely insights into the stock market trends.
 
-![airflow architecture](dags structure.png)
+<img src="dags structure.png" alt="Logo">
 
 Thank you for exploring my Stock Price and News Sentiment Analysis for the Metaverse project. I hope you find it informative and educational. Feel free to reach out with any questions or feedback!
