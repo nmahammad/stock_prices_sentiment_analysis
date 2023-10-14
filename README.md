@@ -4,7 +4,7 @@
 
 🚀 Here, I explore the intriguing **correlation between stock price movements and changes in sentiment** related to the "metaverse." My goal is to provide a valuable tool for investors who seek to make informed decisions in the stock market.
 
-🧠 I have used a model that leverages the power of **Natural Language Processing (NLP)** and **Machine Learning (ML)** to analyze news sentiment and make predictions about future stock market trends.
+🧠 I have used a model that leverages the power of **Natural Language Processing (NLP)** and **Machine Learning (ML)** to analyze news sentiment about stock market trends.
 
 My approach involves analyzing **news articles related to the metaverse** to determine their sentiment. By combining this sentiment analysis with other relevant indicators, I aim to predict trends in stock price movements. Investors can use these predictions to guide their investment decisions.
 
