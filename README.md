@@ -2,7 +2,7 @@
 
 **Welcome to the Stock Price and News Sentiment Analysis for the Metaverse project!** I undertook this project for educational purposes as part of my curriculum.
 
-🚀 Here, I explore the intriguing **correlation between stock price movements and changes in sentiment** related to the "metaverse." My goal is to provide a valuable tool for investors who seek to make informed decisions in the stock market.
+🚀 Here, I explore the intriguing **correlation between stock price movements and changes in sentiment** related to the "metaverse." 
 
 🧠 I have used a model that leverages the power of **Natural Language Processing (NLP)** and **Machine Learning (ML)** to analyze news sentiment about stock market trends.
 
